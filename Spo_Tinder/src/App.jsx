@@ -1,21 +1,53 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Dropdown from './components/Dropdown.jsx'
-
+import axios from 'axios'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  const[token, setToken] = useState('')
+  const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
+  const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
+
+  useEffect(() => {
+    var authParameters = {
+      method: 'Post',
+      headers: {
+       'Content-Type' : 'application/x-www-form-urlencoded',
+    },
+    body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
+    }
+    fetch('https://accounts.spotify.com/api/token', authParameters)
+      .then(result => result.json)
+      .then(data => console.log(data))
+  }, [])
   
   const data = [
     {value: "0", name: "Select"},
     {value: "1", name: "Song 1"},
     {value: "2", name: "Song 2"},
     {value: "3", name: "Song 3"}
+
   ]
+  console.log("Rendering app js")
+  const [count, setCount] = useState(0)
+
+  /*
+  const[token, setToken] = useState('')
+
+  axios('https://accounts.spotify.com/api/token', {
+    data: 'grant_type=client_credentials&client_id=your-client-id&client_secret=your-client-secret',
+    method: 'POST'
+  })
+  .then(tokenResponse => {
+    console.log(tokenResponse.data.access_token);
+    setToken(tokenResponse.data.access_token);
+  })
+  */
+
+
+  
   return (
     <>
       <div>
@@ -28,6 +60,8 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
+
+        
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
