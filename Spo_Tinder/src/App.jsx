@@ -10,8 +10,8 @@ function App() {
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
   const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
 
-  console.log("Client Id: " + CLIENT_ID)
-  console.log("Secret: " + CLIENT_SECRET)
+  console.log("Client Id: " + CLIENT_ID);
+  console.log("Secret: " + CLIENT_SECRET);
 
   /*
   useEffect(() => {
@@ -36,9 +36,9 @@ function App() {
     {value: "2", name: "Song 2"},
     {value: "3", name: "Song 3"}
 
-  ]
-  console.log("Rendering app js")
-  const [count, setCount] = useState(0)
+  ];
+  console.log("Rendering app js");
+  const [count, setCount] = useState(0);
 
   /*
   const[token, setToken] = useState('')
