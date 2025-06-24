@@ -10,23 +10,23 @@ function App() {
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
   const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
 
-  console.log("Client Id: " + CLIENT_ID);
-  console.log("Secret: " + CLIENT_SECRET);
+  
 
-  /*
+  
   useEffect(() => {
     var authParameters = {
-      method: 'Post',
+      method: 'POST',
       headers: {
        'Content-Type' : 'application/x-www-form-urlencoded',
     },
     body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
     }
+
     fetch('https://accounts.spotify.com/api/token', authParameters)
-      .then(result => result.json)
+      .then(result => result.json())
       .then(data => console.log(data))
   }, [])
-  */
+  
 
   
 
@@ -37,6 +37,7 @@ function App() {
     {value: "3", name: "Song 3"}
 
   ];
+
   console.log("Rendering app js");
   const [count, setCount] = useState(0);
 
