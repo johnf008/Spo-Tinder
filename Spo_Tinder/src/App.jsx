@@ -10,6 +10,10 @@ function App() {
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
   const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
 
+  console.log("Client Id: " + CLIENT_ID)
+  console.log("Secret: " + CLIENT_SECRET)
+
+  /*
   useEffect(() => {
     var authParameters = {
       method: 'Post',
@@ -22,7 +26,10 @@ function App() {
       .then(result => result.json)
       .then(data => console.log(data))
   }, [])
+  */
+
   
+
   const data = [
     {value: "0", name: "Select"},
     {value: "1", name: "Song 1"},
