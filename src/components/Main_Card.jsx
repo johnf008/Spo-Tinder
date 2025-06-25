@@ -3,8 +3,10 @@ function Main_Card() {
 
     return (
         <>
-        <div className="grid place-items-center bg-radial from-black from 40% to-gray-500 rounded-xl">
-            <p>Hiiii :3</p>
+        <div className="block border-red-500 place-items-center mt-5 text-center m-auto w-100 h-125 bg-zinc-900 rounded-xl text-white font-bold">
+            <img className="block border border-red-500 m-0 p-0" src="https://placehold.co/250"></img>
+            <p className="block border border-red-500 m-0 p-0 leading-none">Song name</p>
+            
         </div>
         </>
     )
