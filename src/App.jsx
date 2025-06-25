@@ -5,6 +5,7 @@ import './App.css'
 import Dropdown from './components/Dropdown.jsx'
 import { LOGIN_URL } from './spotify_login_script.js'
 import { getTheToken } from './spotify_login_script.js'
+import { getTheWindowHash } from './spotify_login_script.js'
 import SpotifyWebApi from 'spotify-web-api-js'
 
 
@@ -13,6 +14,8 @@ function App() {
 
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
   const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
+
+  const AUTH_END_POINT = "https://accounts.spotify.com/authorize"
   
   const[token, setToken] = useState("")
   
@@ -32,17 +35,19 @@ function App() {
   }, [])
   
   useEffect(()=>{
-    console.log("What is in the URLL ", getTheToken())
-    const _spotifyToken = getTheToken().access_token
+    console.log("What is in the URLL ", getTheToken(window.location.href))
+    console.log("What is the URL but in hereee: " + window.location.hash)
+    const _spotifyToken = getTheToken(window.location.hash).access_token
     window.location.hash = ""
 
     console.log("Spotify token: ", _spotifyToken)
+    getTheWindowHash()
 
     if (_spotifyToken){
       setToken(_spotifyToken)
 
       spotify.setAccessToken(_spotifyToken)
-      
+
     }
   });
   
