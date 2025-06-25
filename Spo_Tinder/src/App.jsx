@@ -5,6 +5,7 @@ import './App.css'
 import Dropdown from './components/Dropdown.jsx'
 import { LOGIN_URL } from './spotify_login_script.js'
 
+
 function App() {
 
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
@@ -40,15 +41,16 @@ function App() {
 
   return (
     <>
+   
     <div className="flex h-screen">
       <div className="m-auto">
         <Dropdown options={data}></Dropdown>
-
-        <div className='bg-green-400 w-50 h-20 rounded-xl text-center m-auto'>
-          <a href={LOGIN_URL} className="">Sign Into Spotify!</a>
+        <div className='bg-green-400 w-50 h-20 rounded-xl flex items-center justify-center'>
+          <a href={LOGIN_URL} className="m-auto">Sign Into Spotify!</a>
         </div>
         </div>
       </div>
+      
     </>
     
     
