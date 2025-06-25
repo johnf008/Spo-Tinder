@@ -1,9 +1,24 @@
 import { useState } from "react"
 
-function NavBar({}) {
+function NavBar({token}) {
     const [profileSrc, setProfile] = useState("")
 
+    useEffect(() => {
+        if(!token) return
 
+        const params = {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }
+        fetch("https://api.spotify.com/v1/me", params)
+        .then(result => result.json())
+        .then(data => {
+            setProfile(data.images[0].url)
+        })
+
+    }, [token])
     
     return (
         <>
