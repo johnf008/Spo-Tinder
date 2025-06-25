@@ -8,4 +8,9 @@ const SCOPES = [
     "user-read-private"
 ]
 
-export const LOGIN_URL = ''
+export const LOGIN_URL = `${AUTH_END_POINT}?
+client_id=${CLIENT_ID}
+&redirect_uri=${REDIRECT_URL}
+&scope=${SCOPES.join("%20")}
+&response_type=token
+&show_dialog=true`
