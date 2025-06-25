@@ -23,8 +23,18 @@ function App() {
     window.location = `${AUTH_END_POINT}?response_type=code&client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URL}&show_dialog=true`
   }
   const[token, setToken] = useState("")
+  const[code, setCode] = useState("")
   
+  const get_uri_code = () => {
+    const PARAM = new URLSearchParams(window.location.search)
+    const code_needed = PARAM.get("code")
 
+    if (code_needed){
+      setCode(code_needed)
+    }
+  }
+
+  /*
   useEffect(() => {
     var authParameters = {
       method: 'POST',
@@ -38,7 +48,10 @@ function App() {
       .then(result => result.json())
       .then(data => setToken(data.access_token))
   }, [])
+*/
 
+  //i think i was getting code here but lowkey i dont remember and i just want to finish it my way
+  /*
   useEffect(() => {
     var authParameters = {
       method: 'POST',
@@ -52,8 +65,31 @@ function App() {
       .then(result => result.json())
       .then(data => setToken(data.access_token))
   }, [])
-  
-  
+  */
+
+  useEffect(() => {
+    const body = new URLSearchParams({
+      code: get_uri_code(),
+      redirect_uri: REDIRECT_URL,
+      grant_type : 'authorization_code'
+    })
+
+    var authParameters = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Authorization' : 'Basic ' + btoa(CLIENT_ID + ':' + CLIENT_SECRET)
+      },
+      body: body.toString()
+    }
+
+    fetch('https://accounts.spotify.com/api/token', authParameters)
+    .then(result => result.json())
+    .then(data => setToken(data.access_token))
+    console.log(token)
+  }, [])
+
+
   /*
   useEffect(()=>{
     console.log("What is in the URLL ", getTheToken(window.location.href))
