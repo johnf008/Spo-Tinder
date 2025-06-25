@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Dropdown from './components/Dropdown.jsx'
+import NavBar from './components/NavBar.jsx'
 import SpotifyWebApi from 'spotify-web-api-js'
 
 
@@ -17,7 +18,7 @@ function App() {
     "user-read-private"
   ]
   const SCOPES_URL_PARM = SCOPES.join(SPACE_DELIMITER)
-  const REDIRECT_URL = "https://6puy02-ip-173-173-201-74.tunnelmole.net"
+  const REDIRECT_URL = "https://mfdmkp-ip-173-173-201-74.tunnelmole.net/"
 
   const login = () => {
     window.location = `${AUTH_END_POINT}?response_type=code&client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URL}&show_dialog=true`
@@ -130,7 +131,8 @@ function App() {
 
   return (
     <>
-   
+    <NavBar></NavBar>
+  
     <div className="flex h-screen">
       <div className="m-auto">
         <Dropdown options={data_hi}></Dropdown>
@@ -140,6 +142,7 @@ function App() {
         <button onClick={login} className="m-auto">Sign into Spotify!</button>
         </div>
       </div>
+      
       
     </>
     
