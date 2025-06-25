@@ -19,7 +19,12 @@ function NavBar({token}) {
             console.log("Data.images: ", data.images)
             console.log("Data.images[0] " , data.images[0])
             console.log("Data.images[0].url: " , data.images[0].url)
+            if(data.images[0].url){
             setProfile(data.images[0].url)
+            }
+            else{
+                setProfile("https://cdna.artstation.com/p/assets/images/images/084/124/296/large/matthew-blank-profile-photo-1.jpg?1737590038")
+            }
             
         })
 
