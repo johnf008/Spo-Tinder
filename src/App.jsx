@@ -86,16 +86,17 @@ function App() {
 
     fetch('https://accounts.spotify.com/api/token', authParameters)
     .then(result => result.json())
-    .then(data => setToken(data.access_token))
+    .then(data => {
+      setToken(data.access_token)
     console.log("Current token: ", data)
-
     if(data.access_token){
       setToken(data.access_token);
       spotify.setAccessToken(data.access_token)
     } else{
       console.error("Couldn't get token: ", data)
     }
-    
+    })
+
   }, [code])
 
 
