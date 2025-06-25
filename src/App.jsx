@@ -20,7 +20,7 @@ function App() {
   const REDIRECT_URL = "https://6puy02-ip-173-173-201-74.tunnelmole.net"
 
   const login = () => {
-    window.location = `${AUTH_END_POINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&scope=${SCOPES_URL_PARM}&response_type=token&show_dialog=true`
+    window.location = `${AUTH_END_POINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&scope=${SCOPES_URL_PARM}&response_type=code&show_dialog=true`
   }
   const[token, setToken] = useState("")
   
@@ -38,6 +38,21 @@ function App() {
       .then(result => result.json())
       .then(data => setToken(data.access_token))
   }, [])
+
+  useEffect(() => {
+    var authParameters = {
+      method: 'POST',
+      headers: {
+       'Content-Type' : 'application/x-www-form-urlencoded',
+    },
+    body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
+    }
+
+    fetch('https://accounts.spotify.com/api/token', authParameters)
+      .then(result => result.json())
+      .then(data => setToken(data.access_token))
+  }, [])
+  
   
   /*
   useEffect(()=>{
