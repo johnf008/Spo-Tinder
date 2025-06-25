@@ -20,7 +20,7 @@ function App() {
   const REDIRECT_URL = "https://6puy02-ip-173-173-201-74.tunnelmole.net"
 
   const login = () => {
-    window.location = `${AUTH_END_POINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&scope=${SCOPES_URL_PARM}&response_type=code&show_dialog=true`
+    window.location = `${AUTH_END_POINT}?response_type=code&client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URL}&show_dialog=true`
   }
   const[token, setToken] = useState("")
   
