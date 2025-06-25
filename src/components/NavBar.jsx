@@ -30,8 +30,9 @@ function NavBar({token}) {
         <div className="container mx-auto bg-black text-white">
             <div className="sm: flex justify-around">
                 <p className="text-3x1 font-bold p-3">Spo-Tinder</p>
+                <img className="h-[50px] w-[50px]" src={profileSrc}></img>
             <div className="ml-auto">
-            <img className="object-scale-down m-auto" src={profileSrc}></img>
+            
             </div>
         </div>
         </div>
