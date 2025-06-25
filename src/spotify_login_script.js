@@ -1,6 +1,6 @@
 export const AUTH_END_POINT = "https://accounts.spotify.com/authorize"
 
-const REDIRECT_URL = "http://localhost:5173/"
+const REDIRECT_URL = "https://xspbbv-ip-173-173-201-74.tunnelmole.net/"
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
 
