@@ -25,14 +25,14 @@ function App() {
   const[token, setToken] = useState("")
   const[code, setCode] = useState("")
   
-  const get_uri_code = () => {
+  useEffect(() => {
     const PARAM = new URLSearchParams(window.location.search)
     const code_needed = PARAM.get("code")
 
     if (code_needed){
       setCode(code_needed)
     }
-  }
+  }, [])
 
   /*
   useEffect(() => {
@@ -68,13 +68,14 @@ function App() {
   */
 
   useEffect(() => {
+    if (!code) return; 
     const body = new URLSearchParams({
-      code: get_uri_code(),
+      code: code,
       redirect_uri: REDIRECT_URL,
       grant_type : 'authorization_code'
     })
 
-    var authParameters = {
+    const authParameters = {
       method: 'POST',
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -86,8 +87,16 @@ function App() {
     fetch('https://accounts.spotify.com/api/token', authParameters)
     .then(result => result.json())
     .then(data => setToken(data.access_token))
-    console.log(token)
-  }, [])
+    console.log("Current token: ", data)
+
+    if(data.access_token){
+      setToken(data.access_token);
+      spotify.setAccessToken(data.access_token)
+    } else{
+      console.error("Couldn't get token: ", data)
+    }
+    
+  }, [code])
 
 
   /*
@@ -109,7 +118,7 @@ function App() {
   });
   */
 
-  const data = [
+  const data_hi = [
     {value: "0", name: "Select"},
     {value: "1", name: "Song 1"},
     {value: "2", name: "Song 2"},
@@ -123,7 +132,7 @@ function App() {
    
     <div className="flex h-screen">
       <div className="m-auto">
-        <Dropdown options={data}></Dropdown>
+        <Dropdown options={data_hi}></Dropdown>
         <div className='bg-green-400 w-50 h-20 rounded-xl flex items-center justify-center'>
           
         </div>
