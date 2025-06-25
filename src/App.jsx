@@ -136,10 +136,7 @@ function App() {
     <div className="flex h-screen">
       <div className="m-auto">
         <Dropdown options={data_hi}></Dropdown>
-        <div className='bg-green-400 w-50 h-20 rounded-xl flex items-center justify-center'>
-          
-        </div>
-        <button onClick={login} className="m-auto">Sign into Spotify!</button>
+       <button onClick={login} className="bg-green-400 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-500 font-bold text-white">Sign into Spotify!</button>
         </div>
       </div>
       
