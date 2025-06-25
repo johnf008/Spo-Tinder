@@ -3,9 +3,6 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Dropdown from './components/Dropdown.jsx'
-import { LOGIN_URL } from './spotify_login_script.js'
-import { getTheToken } from './spotify_login_script.js'
-import { getTheWindowHash } from './spotify_login_script.js'
 import SpotifyWebApi from 'spotify-web-api-js'
 
 
@@ -14,9 +11,17 @@ function App() {
 
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
   const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
-
+  const SPACE_DELIMITER = "%20"
   const AUTH_END_POINT = "https://accounts.spotify.com/authorize"
-  
+  const SCOPES = [
+    "user-read-private"
+  ]
+  const SCOPES_URL_PARM = SCOPES.join(SPACE_DELIMITER)
+  const REDIRECT_URL = "https://6puy02-ip-173-173-201-74.tunnelmole.net"
+
+  const login = () => {
+    window.location = `${AUTH_END_POINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&scope=${SCOPES_URL_PARM}&response_type=token&show_dialog=true`
+  }
   const[token, setToken] = useState("")
   
 
@@ -34,6 +39,7 @@ function App() {
       .then(data => setToken(data.access_token))
   }, [])
   
+  /*
   useEffect(()=>{
     console.log("What is in the URLL ", getTheToken(window.location.href))
     console.log("What is the URL but in hereee: " + window.location.hash)
@@ -50,7 +56,7 @@ function App() {
 
     }
   });
-  
+  */
 
   const data = [
     {value: "0", name: "Select"},
@@ -60,8 +66,6 @@ function App() {
 
   ];
 
-  console.log("Rendering app js");
-  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -70,8 +74,9 @@ function App() {
       <div className="m-auto">
         <Dropdown options={data}></Dropdown>
         <div className='bg-green-400 w-50 h-20 rounded-xl flex items-center justify-center'>
-          <a href={LOGIN_URL} className="m-auto">Sign Into Spotify!</a>
+          
         </div>
+        <button onClick={login} className="m-auto">Sign into Spotify!</button>
         </div>
       </div>
       

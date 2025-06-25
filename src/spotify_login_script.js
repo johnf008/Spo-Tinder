@@ -1,3 +1,7 @@
+/*
+export const AUTH_END_POINT = "https://accounts.spotify.com/authorize"
+
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
 
 const SCOPES = [
     "user-read-private"
@@ -26,3 +30,4 @@ export const getTheToken = (windowlocationhash) => {
 export const getTheWindowHash = () => {
     console.log("Window Hash: " + window.location.hash);
 }
+*/
