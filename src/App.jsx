@@ -4,14 +4,18 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Dropdown from './components/Dropdown.jsx'
 import { LOGIN_URL } from './spotify_login_script.js'
+import { getTheToken } from './spotify_login_script.js'
+import SpotifyWebApi from 'spotify-web-api-js'
 
 
 function App() {
+  const spotify = new SpotifyWebApi()
 
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
   const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
   
-    const[token, setToken] = useState("")
+  const[token, setToken] = useState("")
+  
 
   useEffect(() => {
     var authParameters = {
@@ -26,6 +30,21 @@ function App() {
       .then(result => result.json())
       .then(data => setToken(data.access_token))
   }, [])
+  
+  useEffect(()=>{
+    console.log("What is in the URLL ", getTheToken())
+    const _spotifyToken = getTheToken().access_token
+    window.location.hash = ""
+
+    console.log("Spotify token: ", _spotifyToken)
+
+    if (_spotifyToken){
+      setToken(_spotifyToken)
+
+      spotify.setAccessToken(_spotifyToken)
+      
+    }
+  });
   
 
   const data = [

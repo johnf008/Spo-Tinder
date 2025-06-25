@@ -14,3 +14,18 @@ client_id=${CLIENT_ID}
 &scope=${SCOPES.join("%20")}
 &response_type=code
 &show_dialog=true`
+
+export const getTheToken = () => {
+    return window.location.hash
+    .substring(1)
+    .split('&')
+    .reduce((initial, item)=> {
+
+        if (!item) return initial;
+        
+        let parts = item.split("=");
+        initial[parts[0]] = decodeURIComponent(parts[1]);
+
+        return initial
+    }, {})
+}
