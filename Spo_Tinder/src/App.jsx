@@ -3,16 +3,15 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Dropdown from './components/Dropdown.jsx'
-import axios from 'axios'
+import LoginButton from './components/LoginButton.jsx'
 
 function App() {
 
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
   const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
-
   
+    const[token, setToken] = useState("")
 
-  
   useEffect(() => {
     var authParameters = {
       method: 'POST',
@@ -24,10 +23,8 @@ function App() {
 
     fetch('https://accounts.spotify.com/api/token', authParameters)
       .then(result => result.json())
-      .then(data => console.log(data))
+      .then(data => setToken(data.access_token))
   }, [])
-  
-
   
 
   const data = [
@@ -41,21 +38,6 @@ function App() {
   console.log("Rendering app js");
   const [count, setCount] = useState(0);
 
-  /*
-  const[token, setToken] = useState('')
-
-  axios('https://accounts.spotify.com/api/token', {
-    data: 'grant_type=client_credentials&client_id=your-client-id&client_secret=your-client-secret',
-    method: 'POST'
-  })
-  .then(tokenResponse => {
-    console.log(tokenResponse.data.access_token);
-    setToken(tokenResponse.data.access_token);
-  })
-  */
-
-
-  
   return (
     <>
       <div>
@@ -81,6 +63,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <Dropdown options={data}></Dropdown>
+      <LoginButton></LoginButton>
     </>
     
   )
