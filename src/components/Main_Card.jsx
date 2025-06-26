@@ -4,6 +4,7 @@ function Main_Card({token}) {
 
     const [artists, updateArtists] = useState("")
     const [artistIDS, updateArtistsIDS] = useState("")
+    const [tracks, updateTracks] = useState({})
     useEffect(() => {
         if (!token) return
         const parms = {
@@ -43,9 +44,17 @@ function Main_Card({token}) {
         fetch(`https://api.spotify.com/v1/artists/${artistIDS[0]}/top-tracks`, parms_2)
         .then(result_1=> result_1.json())
         .then(data_1 => {
-            console.log("After ids ", data_1)
+            console.log("After ids ", data_1.tracks)
+            updateTracks(prev_data => ({
+                ...prev_data,
+                tracks: data_1.tracks
+            }))
         })
     }, [artists])
+
+    useEffect(() => {
+        console.log("Tracks", tracks.tracks)
+    }, [tracks])
     
 
 
