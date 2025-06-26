@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 
 function Main_Card({token}) { 
 
-    const [genres, updateGenres] = useState("")
-
+    const [artists, updateArtists] = useState("")
+    const [artistIDS, updateArtistsIDS] = useState("")
     useEffect(() => {
         if (!token) return
         const parms = {
@@ -15,12 +15,19 @@ function Main_Card({token}) {
         fetch("https://api.spotify.com/v1/me/top/artists", parms)
         .then(result => result.json())
         .then(data => {
-            console.log([...new Set(data.items.flatMap(artist => artist.genres))])
-            updateGenres([...new Set(data.items.flatMap(artist => artist.genres))])
+            console.log("Complete user data: ", data)
+
+            console.log([...new Set(data.items.flatMap(artist => artist.name))])
+            updateArtists([...new Set(data.items.flatMap(artist => artist.name))])
+
+            console.log([...new Set(data.items.flatMap(artist => artist.id))])
+            updateArtistsIDS([...new Set(data.items.flatMap(artist => artist.id))])
             
     })
     }, [token])
 
+    /*
+    
     useEffect(() => {
         if (!token) return
         const parms_2 = {
@@ -29,8 +36,6 @@ function Main_Card({token}) {
                 Authorization: 'Bearer ' + token
             }
         }
-        console.log("WYM no token provided: ", token)
-        
         const query = `genre:${genres[0]}&type=track&limit=20`
         console.log("Query: ", query)
 
@@ -41,7 +46,8 @@ function Main_Card({token}) {
         .then(data_1 => {
             console.log("After genres ", data_1)
         })
-    }, [genres])
+    }, [artists])
+    */
 
 
 
