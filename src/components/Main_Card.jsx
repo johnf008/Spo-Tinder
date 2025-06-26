@@ -1,18 +1,25 @@
+import { useEffect, useState } from "react"
 
 function Main_Card({token}) { 
+
+    const [genres, updateGenres] = useState({})
 
     useEffect(() => {
         if (!token) return
         const parms = {
             method: 'GET',
             headers: {
-            Authorization: 'Bearer ' + token
+                Authorization: 'Bearer ' + token
             }
         }
         fetch("https://api.spotify.com/v1/me/top/artists", parms)
-        .then(result => result.json)
-        .then(data => console.log(data))
+        .then(result => result.json())
+        .then(data => {
+            console.log(data.items.flatMap(artist => artist.genres))
+            
+    })
     }, [token])
+
 
     return (
         <>
