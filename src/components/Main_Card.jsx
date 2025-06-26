@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react"
 
 function Main_Card({token}) { 
-
+    {/*Gonna comment this file out bc if i don't, im gonna forget what everything does when i come back in a couple days */}
+    
+    {/*Used to get the artists top tracks*/}
     const [artists, updateArtists] = useState("")
     const [artistIDS, updateArtistsIDS] = useState([])
     const [tracks, updateTracks] = useState({})
-    const [startApp, updateStart] = useState(false)
 
+    {/*Used to get the visuals*/}
     const [albumCover, updateCover] = useState("https://placehold.co/250")
+    const [songName, updateSong] = useState("Song Name")
+    const [artistName, updateArtistName] = useState("Artist")
 
     useEffect(() => {
         if (!token) return
@@ -82,12 +86,18 @@ function Main_Card({token}) {
         console.log("Random track: ", randomTrack)    
         console.log("Random track.album.images[0] ", randomTrack.album.images[0].url)
 
-        updateCover(randomTrack.album.images[0].url)
+        updateCover(randomTrack.album.images[1].url)
+        updateArtistName(randomTrack.artists[0].name)
     }
 
     useEffect(() =>{
         console.log("Album cover ", albumCover)
+    
     }, [albumCover])
+
+    useEffect(() => {
+        console.log("Artist name: ", artistName)
+    })
 
 
 
@@ -95,10 +105,10 @@ function Main_Card({token}) {
         <>
         <div className="block place-items-center mt-5 text-center m-auto w-100 h-125 bg-zinc-900 rounded-xl text-white ">
 
-            <img className="block m-0 pt-10 w-64 h-64" src={albumCover}></img>
+            <img className="block m-0 pt-10" src={albumCover}></img>
             
                 <div className="text-left text-3xl mt-5 leading-none w-80 font-bold">Song name</div>
-                <div className="text-left text-2xl mt-5 leading-none w-80">Artist</div>
+                <div className="text-left text-2xl mt-5 leading-none w-80">{artistName}</div>
         </div>
 
         <div className="flex justify-center gap-6">
