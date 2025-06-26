@@ -3,8 +3,11 @@ import { useEffect, useState } from "react"
 function Main_Card({token}) { 
 
     const [artists, updateArtists] = useState("")
-    const [artistIDS, updateArtistsIDS] = useState("")
+    const [artistIDS, updateArtistsIDS] = useState([])
     const [tracks, updateTracks] = useState({})
+    const [startApp, updateStart] = useState(false)
+
+    const [albumCover, updateCover] = useState("")
     useEffect(() => {
         if (!token) return
         const parms = {
@@ -21,8 +24,8 @@ function Main_Card({token}) {
             console.log([...new Set(data.items.flatMap(artist => artist.name))])
             updateArtists([...new Set(data.items.flatMap(artist => artist.name))])
 
-            console.log([...new Set(data.items.flatMap(artist => artist.id))])
-            updateArtistsIDS([...new Set(data.items.flatMap(artist => artist.id))])
+            console.log([...new Set(data.items.map(artist => artist.id))])
+            updateArtistsIDS([...new Set(data.items.map(artist => artist.id))])
             
     })
     }, [token])
@@ -43,26 +46,34 @@ function Main_Card({token}) {
         console.log("WYM no token" + token)
         updateTracks({tracks: []})
 
-        for(let x in artistIDS){
-            console.log("Artist ID: ", artistIDS)
-            fetch(`https://api.spotify.com/v1/artists/${artistIDS[count]}/top-tracks`, parms_2)
+        console.log("Artist IDS: ", artistIDS)
+        console.log("Artist IDS: ", artistIDS.map)
+        Promise.all(artistIDS.map(id =>{
+            console.log(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`)
+            fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`, parms_2)
             .then(result_1=> result_1.json())
-            .then(data_1 => {
-                console.log("After ids ", data_1.tracks)
-                updateTracks(prev_data => ({
-                    ...prev_data,
-                    tracks: [...prev_data.tracks, ...data_1.tracks]
-                }))
+            .then(all_the_tracks => {
+                const flat_tracks = all_the_tracks.flat();
+                updateTracks({tracks: flat_tracks})
+                updateTheCard();
             })
-            count += 1
-    }   
-    }, [artists])
+        }
+        ))
+        
+    }, [artistIDS])
 
     useEffect(() => {
-        console.log("Tracks", tracks.tracks[0])
-
-
+        if (tracks.tracks && tracks.tracks.length > 0){
+            updateTheCard()
+        }
     }, [tracks])
+
+    function updateTheCard(){
+        console.log("Tracks.tracks: ", tracks.tracks)
+        let randomTrack = tracks[Math.floor(Math.random() * tracks.length)]
+        console.log("Random track: ", randomTrack)
+        updateCover(randomTrack.album.images)
+    }
 
 
 
