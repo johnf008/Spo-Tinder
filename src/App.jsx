@@ -18,7 +18,7 @@ function App() {
     "user-read-private"
   ]
   const SCOPES_URL_PARM = SCOPES.join(SPACE_DELIMITER)
-  const REDIRECT_URL = "https://lp34ga-ip-173-173-201-74.tunnelmole.net"
+  const REDIRECT_URL = "https://fexg7p-ip-173-173-201-74.tunnelmole.net"
 
   const login = () => {
     window.location = `${AUTH_END_POINT}?response_type=code&client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URL}&show_dialog=true`
