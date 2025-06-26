@@ -44,21 +44,25 @@ function Main_Card({token}) {
         }
 
         console.log("WYM no token" + token)
-        updateTracks({tracks: []})
 
         console.log("Artist IDS: ", artistIDS)
         console.log("Artist IDS: ", artistIDS.map)
-        Promise.all(artistIDS.map(id =>{
-            console.log(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`)
-            fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`, parms_2)
+
+        updateTracks({tracks: []})
+
+        for(let x in artistIDS){
+            console.log("Artist ID: ", artistIDS)
+            fetch(`https://api.spotify.com/v1/artists/${artistIDS[count]}/top-tracks`, parms_2)
             .then(result_1=> result_1.json())
-            .then(all_the_tracks => {
-                const flat_tracks = all_the_tracks.flat();
-                updateTracks({tracks: flat_tracks})
-                updateTheCard();
+            .then(data_1 => {
+                console.log("After ids ", data_1.tracks)
+                updateTracks(prev_data => ({
+                    ...prev_data,
+                    tracks: [...prev_data.tracks, ...data_1.tracks]
+                }))
             })
-        }
-        ))
+            count += 1
+    }   
         
     }, [artistIDS])
 
@@ -69,10 +73,12 @@ function Main_Card({token}) {
     }, [tracks])
 
     function updateTheCard(){
-        console.log("Tracks.tracks: ", tracks.tracks)
+        console.log("Tracks: ", tracks)
+        /*
         let randomTrack = tracks[Math.floor(Math.random() * tracks.length)]
         console.log("Random track: ", randomTrack)
         updateCover(randomTrack.album.images)
+        */
     }
 
 
