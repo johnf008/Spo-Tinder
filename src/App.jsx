@@ -134,13 +134,17 @@ function App() {
     <div className="bg-green-500">
     <NavBar token={token}></NavBar>
     <div className="h-screen">
-      {/*
-      <div className="m-auto">
-        <Dropdown options={data_hi}></Dropdown>
-       <button onClick={login} className="bg-green-600 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-700 font-bold text-white">Sign into Spotify!</button>
+      
+      
+      <div className=" h-screen w-screen m-auto flex justify-center items-center">
+        <div>
+          <Dropdown options={data_hi}></Dropdown>
+          <button onClick={login} className="bg-green-600 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-700 font-bold text-white">Sign into Spotify!</button>
+          </div>
         </div>
-      */}
-      <Main_Card></Main_Card>
+        
+      
+      {/*<Main_Card></Main_Card>  */}
       </div>
     </div>
       
