@@ -31,6 +31,7 @@ function Main_Card({token}) {
     
     useEffect(() => {
         if (!token) return
+        let count = 0
 
         const parms_2 = {
             method: 'GET',
@@ -40,22 +41,28 @@ function Main_Card({token}) {
         }
 
         console.log("WYM no token" + token)
-        
-        fetch(`https://api.spotify.com/v1/artists/${artistIDS[0]}/top-tracks`, parms_2)
-        .then(result_1=> result_1.json())
-        .then(data_1 => {
-            console.log("After ids ", data_1.tracks)
-            updateTracks(prev_data => ({
-                ...prev_data,
-                tracks: data_1.tracks
-            }))
-        })
+        updateTracks({tracks: []})
+
+        for(let x in artistIDS){
+            console.log("Artist ID: ", artistIDS)
+            fetch(`https://api.spotify.com/v1/artists/${artistIDS[count]}/top-tracks`, parms_2)
+            .then(result_1=> result_1.json())
+            .then(data_1 => {
+                console.log("After ids ", data_1.tracks)
+                updateTracks(prev_data => ({
+                    ...prev_data,
+                    tracks: [...prev_data.tracks, ...data_1.tracks]
+                }))
+            })
+            count += 1
+    }   
     }, [artists])
 
     useEffect(() => {
-        console.log("Tracks", tracks.tracks)
+        console.log("Tracks", tracks.tracks[0])
+
+
     }, [tracks])
-    
 
 
 
