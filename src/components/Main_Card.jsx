@@ -21,6 +21,28 @@ function Main_Card({token}) {
     })
     }, [token])
 
+    useEffect(() => {
+        if (!token) return
+        const parms_2 = {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }
+        console.log("WYM no token provided: ", token)
+        
+        const query = `genre:${genres[0]}&type=track&limit=20`
+        console.log("Query: ", query)
+
+        console.log("Genres 0 ", genres[0])
+
+        fetch(`https://api.spotify.com/v1/search?q=${query}`, parms_2)
+        .then(result_1=> result_1.json())
+        .then(data_1 => {
+            console.log("After genres ", data_1)
+        })
+    }, [genres])
+
 
 
     return (
