@@ -136,15 +136,26 @@ function App() {
     <div className="h-screen">
       
       
-      <div className=" h-screen w-screen m-auto flex justify-center items-center">
-        <div>
+      <div className="h-screen m-auto justify-center items-center">
+        {token ? 
+        <Main_Card></Main_Card>
+         : 
+         <div className="block place-items-center mt-40 items-center m-auto">
           <Dropdown options={data_hi}></Dropdown>
           <button onClick={login} className="bg-green-600 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-700 font-bold text-white">Sign into Spotify!</button>
-          </div>
+        </div>
+        }
+        
+    
+        
+        
+        
+        
         </div>
         
+        
       
-      {/*<Main_Card></Main_Card>  */}
+      
       </div>
     </div>
       

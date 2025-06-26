@@ -7,12 +7,12 @@ function Main_Card() {
 
             <img className="block m-0 pt-10" src="https://placehold.co/250"></img>
             
-                <p className="text-left text-3xl mt-5 leading-none w-80 font-bold">Song name</p>
-                <p className="text-left text-2xl mt-5 leading-none w-80">Artist</p>
+                <div className="text-left text-3xl mt-5 leading-none w-80 font-bold">Song name</div>
+                <div className="text-left text-2xl mt-5 leading-none w-80">Artist</div>
         </div>
 
         <div className="flex justify-center gap-6">
-            <button className="bg-green-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-green-300">Add To Playlist</button>
+            <button className="bg-green-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-green-300 ">Add To Playlist</button>
              <button className="bg-red-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-red-300">EWWWWW</button>
         </div>
         </>
