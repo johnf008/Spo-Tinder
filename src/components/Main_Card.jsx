@@ -10,7 +10,7 @@ function Main_Card({token}) {
 
     {/*Used to get the visuals*/}
     const [albumCover, updateCover] = useState("https://placehold.co/250")
-    const [songName, updateSong] = useState("Song Name")
+    const [songName, updateSongName] = useState("Song Name")
     const [artistName, updateArtistName] = useState("Artist")
 
     useEffect(() => {
@@ -82,12 +82,21 @@ function Main_Card({token}) {
         console.log("Tracks.tracks: ", tracks.tracks)
         console.log(tracks.tracks[Math.floor(Math.random() * tracks.tracks.length)])
         
-        let randomTrack = tracks.tracks[Math.floor(Math.random() * tracks.tracks.length)]
+        let rand_num = Math.floor(Math.random() * tracks.tracks.length)
+        let randomTrack = tracks.tracks[rand_num]
+
         console.log("Random track: ", randomTrack)    
         console.log("Random track.album.images[0] ", randomTrack.album.images[0].url)
 
         updateCover(randomTrack.album.images[1].url)
         updateArtistName(randomTrack.artists[0].name)
+        updateSongName(randomTrack.name)
+
+        if(rand_num != -1){
+            tracks.tracks.splice(rand_num, 1)
+        }
+
+        console.log("Tracks.tracks after deletion: ", tracks)
     }
 
     useEffect(() =>{
@@ -107,12 +116,12 @@ function Main_Card({token}) {
 
             <img className="block m-0 pt-10" src={albumCover}></img>
             
-                <div className="text-left text-3xl mt-5 leading-none w-80 font-bold">Song name</div>
+                <div className="text-left text-3xl mt-5 leading-none w-80 font-bold">{songName}</div>
                 <div className="text-left text-2xl mt-5 leading-none w-80">{artistName}</div>
         </div>
 
         <div className="flex justify-center gap-6">
-            <button className="bg-green-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-green-300 ">Add To Playlist</button>
+            <button className="bg-green-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-green-300" onClick={updateTheCard}>Add To Playlist</button>
              <button className="bg-red-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-red-300">EWWWWW</button>
         </div>
         </>
