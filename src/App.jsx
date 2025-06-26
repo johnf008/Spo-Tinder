@@ -15,7 +15,8 @@ function App() {
   const SPACE_DELIMITER = "%20"
   const AUTH_END_POINT = "https://accounts.spotify.com/authorize"
   const SCOPES = [
-    "user-read-private"
+    "user-read-private",
+    "user-top-read"
   ]
   const SCOPES_URL_PARM = SCOPES.join(SPACE_DELIMITER)
   const REDIRECT_URL = "https://fexg7p-ip-173-173-201-74.tunnelmole.net"
@@ -138,7 +139,7 @@ function App() {
       
       <div className="h-screen m-auto justify-center items-center">
         {token ? 
-        <Main_Card></Main_Card>
+        <Main_Card token={token}></Main_Card>
          : 
          <div className="block place-items-center mt-40 items-center m-auto">
           <Dropdown options={data_hi}></Dropdown>

@@ -1,5 +1,18 @@
 
-function Main_Card() {
+function Main_Card({token}) { 
+
+    useEffect(() => {
+        if (!token) return
+        const parms = {
+            method: 'GET',
+            headers: {
+            Authorization: 'Bearer ' + token
+            }
+        }
+        fetch("https://api.spotify.com/v1/me/top/artists", parms)
+        .then(result => result.json)
+        .then(data => console.log(data))
+    }, [token])
 
     return (
         <>
