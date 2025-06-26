@@ -74,11 +74,15 @@ function Main_Card({token}) {
 
     function updateTheCard(){
         console.log("Tracks: ", tracks)
+        console.log("Tracks.tracks: ", tracks.tracks)
+        console.log(tracks.tracks[Math.floor(Math.random() * tracks.tracks.length)])
+
         /*
         let randomTrack = tracks[Math.floor(Math.random() * tracks.length)]
         console.log("Random track: ", randomTrack)
         updateCover(randomTrack.album.images)
         */
+
     }
 
 
