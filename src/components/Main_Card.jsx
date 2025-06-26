@@ -7,7 +7,8 @@ function Main_Card({token}) {
     const [tracks, updateTracks] = useState({})
     const [startApp, updateStart] = useState(false)
 
-    const [albumCover, updateCover] = useState("")
+    const [albumCover, updateCover] = useState("https://placehold.co/250")
+
     useEffect(() => {
         if (!token) return
         const parms = {
@@ -76,14 +77,17 @@ function Main_Card({token}) {
         console.log("Tracks: ", tracks)
         console.log("Tracks.tracks: ", tracks.tracks)
         console.log(tracks.tracks[Math.floor(Math.random() * tracks.tracks.length)])
+        
+        let randomTrack = tracks.tracks[Math.floor(Math.random() * tracks.tracks.length)]
+        console.log("Random track: ", randomTrack)    
+        console.log("Random track.album.images[0] ", randomTrack.album.images[0].url)
 
-        /*
-        let randomTrack = tracks[Math.floor(Math.random() * tracks.length)]
-        console.log("Random track: ", randomTrack)
-        updateCover(randomTrack.album.images)
-        */
-
+        updateCover(randomTrack.album.images[0].url)
     }
+
+    useEffect(() =>{
+        console.log("Album cover ", albumCover)
+    }, [albumCover])
 
 
 
@@ -91,7 +95,7 @@ function Main_Card({token}) {
         <>
         <div className="block place-items-center mt-5 text-center m-auto w-100 h-125 bg-zinc-900 rounded-xl text-white ">
 
-            <img className="block m-0 pt-10" src="https://placehold.co/250"></img>
+            <img className="block m-0 pt-10 w-64 h-64" src={albumCover}></img>
             
                 <div className="text-left text-3xl mt-5 leading-none w-80 font-bold">Song name</div>
                 <div className="text-left text-2xl mt-5 leading-none w-80">Artist</div>

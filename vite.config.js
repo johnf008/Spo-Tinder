@@ -8,6 +8,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
 
   server: {
-    allowedHosts: ["fexg7p-ip-173-173-201-74.tunnelmole.net"]
+    allowedHosts: ["lm6ruh-ip-173-173-201-74.tunnelmole.net"]
   }
 })
