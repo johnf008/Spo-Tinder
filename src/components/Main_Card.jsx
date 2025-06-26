@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 function Main_Card({token}) { 
 
-    const [genres, updateGenres] = useState({})
+    const [genres, updateGenres] = useState("")
 
     useEffect(() => {
         if (!token) return
@@ -15,10 +15,12 @@ function Main_Card({token}) {
         fetch("https://api.spotify.com/v1/me/top/artists", parms)
         .then(result => result.json())
         .then(data => {
-            console.log(data.items.flatMap(artist => artist.genres))
+            console.log([...new Set(data.items.flatMap(artist => artist.genres))])
+            updateGenres([...new Set(data.items.flatMap(artist => artist.genres))])
             
     })
     }, [token])
+
 
 
     return (
