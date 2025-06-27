@@ -14,6 +14,8 @@ function Main_Card({token}) {
     const [artistName, updateArtistName] = useState("Artist")
 
     const [userID, setUserID] = useState("")
+    const [playlistID, setPlaylistID] = useState("")
+    const [songUri, setSongUri] = useState("")
 
     useEffect(() => {
         if (!token) return
@@ -92,14 +94,14 @@ function Main_Card({token}) {
         fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, parms_3)
         .then(result_2 => result_2.json())
         .then(data_2 => {
-            console.log("New playlist: ", data_2)
+            setPlaylistID(data_2.id)
         })
     }
     
 
     useEffect(() => {
         if (tracks.tracks && tracks.tracks.length > 0){
-            updateTheCard()
+            updateTheCard("no")
         }
     }, [tracks])
 
@@ -127,7 +129,26 @@ function Main_Card({token}) {
     }, [userID])
 
 
-    function updateTheCard(){
+    function updateTheCard(button_type){
+        if(button_type == "add"){
+            console.log("Random.track uri ", randomTrack.uri)
+            const params_7 = {
+                method: 'POST', 
+                headers: {
+                    "Authorization": 'Bearer ' + token,
+                    "Content-Type": 'application/json' 
+                },
+                body: JSON.stringify({
+                    "uris" : [randomTrack.uri]
+                })
+            }
+            fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, params_7)
+            .then(result_7 => result_7.json())
+            .then(data_7 => {
+                console.log("Data_7 ", data_7)
+            })
+        }
+        
         console.log("Tracks: ", tracks)
         console.log("Tracks.tracks: ", tracks.tracks)
         console.log(tracks.tracks[Math.floor(Math.random() * tracks.tracks.length)])
@@ -141,6 +162,7 @@ function Main_Card({token}) {
         updateCover(randomTrack.album.images[1].url)
         updateArtistName(randomTrack.artists[0].name)
         updateSongName(randomTrack.name)
+        
 
         if(rand_num != -1){
             tracks.tracks.splice(rand_num, 1)
@@ -162,6 +184,10 @@ function Main_Card({token}) {
         createPlaylist()
     }, [userID])
 
+    useEffect(() => {
+        console.log("Playlist id: ", playlistID)
+    }, [playlistID])
+
 
 
     return (
@@ -175,8 +201,8 @@ function Main_Card({token}) {
         </div>
 
         <div className="flex justify-center gap-6">
-            <button className="bg-green-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-green-300" onClick={updateTheCard}>Add To Playlist</button>
-             <button className="bg-red-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-red-300">EWWWWW</button>
+            <button className="bg-green-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-green-300" onClick={() => updateTheCard("add")}>Add To Playlist</button>
+             <button className="bg-red-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-red-300" onClick={() => updateTheCard("no")}>EWWWWW</button>
         </div>
         </>
     )
