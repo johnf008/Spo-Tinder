@@ -30,12 +30,8 @@ function Main_Card({token}) {
         fetch("https://api.spotify.com/v1/me/top/artists", parms)
         .then(result => result.json())
         .then(data => {
-            console.log("Complete user data: ", data)
-
-            console.log([...new Set(data.items.flatMap(artist => artist.name))])
             updateArtists([...new Set(data.items.flatMap(artist => artist.name))])
 
-            console.log([...new Set(data.items.map(artist => artist.id))])
             updateArtistsIDS([...new Set(data.items.map(artist => artist.id))])
             
     })
@@ -53,19 +49,13 @@ function Main_Card({token}) {
             }
         }
 
-        console.log("WYM no token" + token)
-
-        console.log("Artist IDS: ", artistIDS)
-        console.log("Artist IDS: ", artistIDS.map)
 
         updateTracks({tracks: []})
 
         for(let x in artistIDS){
-            console.log("Artist ID: ", artistIDS)
             fetch(`https://api.spotify.com/v1/artists/${artistIDS[count]}/top-tracks`, parms_2)
             .then(result_1=> result_1.json())
             .then(data_1 => {
-                console.log("After ids ", data_1.tracks)
                 updateTracks(prev_data => ({
                     ...prev_data,
                     tracks: [...prev_data.tracks, ...data_1.tracks]
@@ -98,7 +88,6 @@ function Main_Card({token}) {
         .then(data_2 => {
             setPlaylistID(data_2.id)
             setPlaylistLink(data_2.external_urls.spotify)
-            console.log("Data_2.external_urls.spotify: ", data_2.external_urls.spotify)
         })
     }
     
@@ -128,14 +117,10 @@ function Main_Card({token}) {
 
     }, [token])
 
-    useEffect(() => {
-        console.log("UserID: ", userID)
-    }, [userID])
 
 
     function updateTheCard(button_type){
         if(button_type == "add"){
-            console.log("Random.track uri ", theRandomTrack.uri)
             const params_7 = {
                 method: 'POST', 
                 headers: {
@@ -152,17 +137,11 @@ function Main_Card({token}) {
                 console.log("Data_7 ", data_7)
             })
         }
-
-        console.log("Tracks: ", tracks)
-        console.log("Tracks.tracks: ", tracks.tracks)
-        console.log(tracks.tracks[Math.floor(Math.random() * tracks.tracks.length)])
         
         let rand_num = Math.floor(Math.random() * tracks.tracks.length)
         let randomTrack = tracks.tracks[rand_num]
         setRandomTrack(randomTrack)
 
-        console.log("Random track: ", randomTrack)    
-        console.log("Random track.album.images[0] ", randomTrack.album.images[0].url)
 
         updateCover(randomTrack.album.images[1].url)
         updateArtistName(randomTrack.artists[0].name)
@@ -173,29 +152,18 @@ function Main_Card({token}) {
             tracks.tracks.splice(rand_num, 1)
         }
 
-        console.log("Tracks.tracks after deletion: ", tracks)
     }
 
     function getPlaylistLink(){
         
     }
 
-    useEffect(() =>{
-        console.log("Album cover ", albumCover)
     
-    }, [albumCover])
-
-    useEffect(() => {
-        console.log("Artist name: ", artistName)
-    }, [artistName])
 
     useEffect(() => {
         createPlaylist()
     }, [userID])
 
-    useEffect(() => {
-        console.log("Playlist id: ", playlistID)
-    }, [playlistID])
 
 
 

@@ -38,39 +38,6 @@ function App() {
     }
   }, [])
 
-  /*
-  useEffect(() => {
-    var authParameters = {
-      method: 'POST',
-      headers: {
-       'Content-Type' : 'application/x-www-form-urlencoded',
-    },
-    body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
-    }
-
-    fetch('https://accounts.spotify.com/api/token', authParameters)
-      .then(result => result.json())
-      .then(data => setToken(data.access_token))
-  }, [])
-*/
-
-  //i think i was getting code here but lowkey i dont remember and i just want to finish it my way
-  /*
-  useEffect(() => {
-    var authParameters = {
-      method: 'POST',
-      headers: {
-       'Content-Type' : 'application/x-www-form-urlencoded',
-    },
-    body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
-    }
-
-    fetch('https://accounts.spotify.com/api/token', authParameters)
-      .then(result => result.json())
-      .then(data => setToken(data.access_token))
-  }, [])
-  */
-
   useEffect(() => {
     if (!code) return; 
     const body = new URLSearchParams({
@@ -92,7 +59,6 @@ function App() {
     .then(result => result.json())
     .then(data => {
       setToken(data.access_token)
-    console.log("Current token: ", data)
     if(data.access_token){
       setToken(data.access_token);
       spotify.setAccessToken(data.access_token)
@@ -103,25 +69,6 @@ function App() {
 
   }, [code])
 
-
-  /*
-  useEffect(()=>{
-    console.log("What is in the URLL ", getTheToken(window.location.href))
-    console.log("What is the URL but in hereee: " + window.location.hash)
-    const _spotifyToken = getTheToken(window.location.hash).access_token
-    window.location.hash = ""
-
-    console.log("Spotify token: ", _spotifyToken)
-    getTheWindowHash()
-
-    if (_spotifyToken){
-      setToken(_spotifyToken)
-
-      spotify.setAccessToken(_spotifyToken)
-
-    }
-  });
-  */
 
   const data_hi = [
     {value: "0", name: "Select"},
@@ -145,7 +92,6 @@ function App() {
         <Main_Card token={token}></Main_Card>
          : 
          <div className="block place-items-center mt-40 items-center m-auto">
-          <Dropdown options={data_hi}></Dropdown>
           <button onClick={login} className="bg-green-600 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-700 font-bold text-white">Sign into Spotify!</button>
         </div>
         }

@@ -14,10 +14,6 @@ function NavBar({token}) {
         fetch("https://api.spotify.com/v1/me", params)
         .then(result => result.json())
         .then(data => {
-            console.log("Complete data ", data)
-            console.log("Data.images: ", data.images)
-            console.log("Data.images[0] " , data.images[0])
-            console.log("Data.images[0].url: " , data.images[0].url)
             if(data.images[0].url){
             setProfile(data.images[0].url)
             }
