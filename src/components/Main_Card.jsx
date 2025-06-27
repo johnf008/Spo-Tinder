@@ -74,21 +74,22 @@ function Main_Card({token}) {
 
     function createPlaylist() {
         if (!token) return
-        
+        if (!userID) return
+    
         const parms_3 = {
             method: 'POST',
             headers: {
-                Authorization: 'Bearer ' + token,
+                "Authorization": 'Bearer ' + token,
                 "Content-Type": 'application/json'
             },
-            data: {
-                name: "New Playlist",
-                description: "Testing description here",
-                public: false
-            }
+            body: JSON.stringify({
+                "name": "New Playlist",
+                "description": "Testing description here",
+                "public": false
+            })
         }
 
-        fetch("https://api.spotify.com/v1/users/smedjan/playlists", parms_3)
+        fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, parms_3)
         .then(result_2 => result_2.json())
         .then(data_2 => {
             console.log("New playlist: ", data_2)
@@ -159,7 +160,7 @@ function Main_Card({token}) {
 
     useEffect(() => {
         createPlaylist()
-    }, [])
+    }, [userID])
 
 
 
