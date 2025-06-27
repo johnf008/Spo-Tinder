@@ -15,7 +15,7 @@ function Main_Card({token}) {
 
     const [userID, setUserID] = useState("")
     const [playlistID, setPlaylistID] = useState("")
-    const [songUri, setSongUri] = useState("")
+    const [playlistLink, setPlaylistLink] = useState("")
 
     const [theRandomTrack, setRandomTrack] = useState()
 
@@ -87,8 +87,8 @@ function Main_Card({token}) {
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify({
-                "name": "New Playlist",
-                "description": "Testing description here",
+                "name": "Spo-Tinder Playlist",
+                "description": "A playlist made by Spo-Tinder",
                 "public": false
             })
         }
@@ -97,6 +97,8 @@ function Main_Card({token}) {
         .then(result_2 => result_2.json())
         .then(data_2 => {
             setPlaylistID(data_2.id)
+            setPlaylistLink(data_2.external_urls.spotify)
+            console.log("Data_2.external_urls.spotify: ", data_2.external_urls.spotify)
         })
     }
     
@@ -174,6 +176,10 @@ function Main_Card({token}) {
         console.log("Tracks.tracks after deletion: ", tracks)
     }
 
+    function getPlaylistLink(){
+        
+    }
+
     useEffect(() =>{
         console.log("Album cover ", albumCover)
     
@@ -205,8 +211,14 @@ function Main_Card({token}) {
 
         <div className="flex justify-center gap-6">
             <button className="bg-green-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-green-300" onClick={() => updateTheCard("add")}>Add To Playlist</button>
-             <button className="bg-red-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-red-300" onClick={() => updateTheCard("no")}>EWWWWW</button>
+            <button className="bg-red-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-red-300" onClick={() => updateTheCard("no")}>EWWWWW</button>
         </div>
+        <div className="flex justify-center gap-6">
+            <a href={playlistLink} target="_blank">
+             <button className="bg-blue-200 mt-5 text-center w-40 h-15 rounded-xl cursor-pointer hover:bg-blue-300">Check Out Your Playlist!</button>
+             </a>
+        </div>
+           
         </>
     )
 }
