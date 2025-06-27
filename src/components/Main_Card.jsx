@@ -199,8 +199,8 @@ function Main_Card({token}) {
 
             <img className="block m-0 pt-10" src={albumCover}></img>
             
-                <div className="text-left text-3xl mt-5 leading-none w-80 font-bold">{songName}</div>
-                <div className="text-left text-2xl mt-5 leading-none w-80">{artistName}</div>
+                <div className="text-left mt-5 leading-none w-80 font-bold">{songName}</div>
+                <div className="text-left mt-5 leading-none w-80">{artistName}</div>
         </div>
 
         <div className="flex justify-center gap-6">

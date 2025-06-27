@@ -140,6 +140,7 @@ function App() {
       
       
       <div className="h-screen m-auto justify-center items-center">
+        
         {token ? 
         <Main_Card token={token}></Main_Card>
          : 
@@ -148,12 +149,7 @@ function App() {
           <button onClick={login} className="bg-green-600 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-700 font-bold text-white">Sign into Spotify!</button>
         </div>
         }
-        
-    
-        
-        
-        
-        
+
         </div>
         
         
