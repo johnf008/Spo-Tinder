@@ -72,6 +72,18 @@ function Main_Card({token}) {
     }, [artistIDS])
 
     useEffect(() => {
+        if (!token) return
+        
+        const parms_3 = {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + token,
+                "Content-Type": 'application/json'
+            }
+        }
+    })
+
+    useEffect(() => {
         if (tracks.tracks && tracks.tracks.length > 0){
             updateTheCard()
         }
