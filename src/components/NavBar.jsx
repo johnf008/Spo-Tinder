@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 
 function NavBar({token}) {
     const [profileSrc, setProfile] = useState("https://placehold.co/50")
-
     useEffect(() => {
         if(!token) return
 
@@ -25,11 +24,12 @@ function NavBar({token}) {
             else{
                 setProfile("https://cdna.artstation.com/p/assets/images/images/084/124/296/large/matthew-blank-profile-photo-1.jpg?1737590038")
             }
-            
+
+            setUserID(data.id)            
         })
 
     }, [token])
-    
+
     return (
         <>
         <div className="container mx-auto bg-black text-white">

@@ -13,6 +13,8 @@ function Main_Card({token}) {
     const [songName, updateSongName] = useState("Song Name")
     const [artistName, updateArtistName] = useState("Artist")
 
+    const [userID, setUserID] = useState("")
+
     useEffect(() => {
         if (!token) return
         const parms = {
@@ -99,6 +101,32 @@ function Main_Card({token}) {
             updateTheCard()
         }
     }, [tracks])
+
+    useEffect(() => {
+        if(!token) return
+
+        const params = {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }
+        fetch("https://api.spotify.com/v1/me", params)
+        .then(result_5 => result_5.json())
+        .then(data_5 => {
+            if(data_5.id){
+            setUserID(data_5.id)
+            }
+            console.log(data_5)
+            console.log(data_5.id)
+        })
+
+    }, [token])
+
+    useEffect(() => {
+        console.log("UserID: ", userID)
+    }, [userID])
+
 
     function updateTheCard(){
         console.log("Tracks: ", tracks)
