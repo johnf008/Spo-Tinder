@@ -36,7 +36,6 @@ function Main_Card({token}) {
     }, [token])
 
     
-    
     useEffect(() => {
         if (!token) return
         let count = 0
@@ -71,7 +70,7 @@ function Main_Card({token}) {
         
     }, [artistIDS])
 
-    useEffect(() => {
+    function createPlaylist() {
         if (!token) return
         
         const parms_3 = {
@@ -79,9 +78,21 @@ function Main_Card({token}) {
             headers: {
                 Authorization: 'Bearer ' + token,
                 "Content-Type": 'application/json'
+            },
+            data: {
+                name: "New Playlist",
+                description: "Testing description here",
+                public: false
             }
         }
-    })
+
+        fetch("https://api.spotify.com/v1/users/smedjan/playlists", parms_3)
+        .then(result_2 => result_2.json())
+        .then(data_2 => {
+            console.log("New playlist: ", data_2)
+        })
+    }
+    
 
     useEffect(() => {
         if (tracks.tracks && tracks.tracks.length > 0){
@@ -118,7 +129,11 @@ function Main_Card({token}) {
 
     useEffect(() => {
         console.log("Artist name: ", artistName)
-    })
+    }, [artistName])
+
+    useEffect(() => {
+        createPlaylist()
+    }, [])
 
 
 

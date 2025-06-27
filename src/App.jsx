@@ -16,10 +16,12 @@ function App() {
   const AUTH_END_POINT = "https://accounts.spotify.com/authorize"
   const SCOPES = [
     "user-read-private",
-    "user-top-read"
+    "user-top-read",
+    "playlist-modify-public",
+    "playlist-modify-private"
   ]
   const SCOPES_URL_PARM = SCOPES.join(SPACE_DELIMITER)
-  const REDIRECT_URL = "https://lm6ruh-ip-173-173-201-74.tunnelmole.net"
+  const REDIRECT_URL = "https://aypjaq-ip-173-173-201-74.tunnelmole.net"
 
   const login = () => {
     window.location = `${AUTH_END_POINT}?response_type=code&client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URL}&show_dialog=true`
