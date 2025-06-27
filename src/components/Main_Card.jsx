@@ -17,6 +17,8 @@ function Main_Card({token}) {
     const [playlistID, setPlaylistID] = useState("")
     const [songUri, setSongUri] = useState("")
 
+    const [theRandomTrack, setRandomTrack] = useState()
+
     useEffect(() => {
         if (!token) return
         const parms = {
@@ -131,7 +133,7 @@ function Main_Card({token}) {
 
     function updateTheCard(button_type){
         if(button_type == "add"){
-            console.log("Random.track uri ", randomTrack.uri)
+            console.log("Random.track uri ", theRandomTrack.uri)
             const params_7 = {
                 method: 'POST', 
                 headers: {
@@ -139,7 +141,7 @@ function Main_Card({token}) {
                     "Content-Type": 'application/json' 
                 },
                 body: JSON.stringify({
-                    "uris" : [randomTrack.uri]
+                    "uris" : [theRandomTrack.uri]
                 })
             }
             fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, params_7)
@@ -148,13 +150,14 @@ function Main_Card({token}) {
                 console.log("Data_7 ", data_7)
             })
         }
-        
+
         console.log("Tracks: ", tracks)
         console.log("Tracks.tracks: ", tracks.tracks)
         console.log(tracks.tracks[Math.floor(Math.random() * tracks.tracks.length)])
         
         let rand_num = Math.floor(Math.random() * tracks.tracks.length)
         let randomTrack = tracks.tracks[rand_num]
+        setRandomTrack(randomTrack)
 
         console.log("Random track: ", randomTrack)    
         console.log("Random track.album.images[0] ", randomTrack.album.images[0].url)
