@@ -2,6 +2,17 @@
 
 One day, I was reminiscing about how addictive the design of some apps is, and was trying to figure out how I could mimic it with a unique spin. Then, I came up with an idea: the Tinder layout but for Spotify tracks. After several hours of typing, freaking out over how terrible the Spotify API is, and metaphorical tears being shed, I present to you Spo-Tinder! Get matched to different songs and add them to a playlist to listen to!
 
+<p align="center">
+   
+
+https://github.com/user-attachments/assets/44e91924-1545-4790-be96-a3fb375bea66
+
+
+</p>
+
+
+
+
 ## Where to Use
 
 You can use Spo-Tinder by clicking <a href="https://johnf008.github.io/Spo-Tinder/" target="_blank">HERE</a>
