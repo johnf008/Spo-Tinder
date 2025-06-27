@@ -117,8 +117,6 @@ function Main_Card({token}) {
             if(data_5.id){
             setUserID(data_5.id)
             }
-            console.log(data_5)
-            console.log(data_5.id)
         })
 
     }, [token])
