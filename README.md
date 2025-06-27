@@ -1,12 +1,23 @@
-# React + Vite
+# Spo-Tinder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+One day, I was reminiscing about how addictive the design of some apps is, and was trying to figure out how I could mimic it with a unique spin. Then, I came up with an idea: the Tinder layout but for Spotify tracks. After several hours of typing, freaking out over how terrible the Spotify API is, and metaphorical tears being shed, I present to you Spo-Tinder! Get matched to different songs and add them to a playlist to listen to!
 
-Currently, two official plugins are available:
+## Where to Use
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can use Spo-Tinder by clicking <a href="https://johnf008.github.io/Spo-Tinder/" target="_blank">HERE</a>
 
-## Expanding the ESLint configuration
+## How to Use
+1. Press the "Login To Spotify Button" (The only data I'm collecting is your profile picture, artists, and getting access to make playlists"
+2. Log in to Spotify
+3. Press the "Add to Playlist" button to add the song to the Spo-Tinder Playlist. If you don't like it, press the "EWWWW" button to reject it
+4. Click the "Check Out Your Playlist!" button to look at your new playlist!
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+1. Clone the repo
+   ```sh
+   git clone https://github.com/johnf008/Spo-Tinder.git
+   ```
+2. Run this command in your terminal
+   ```sh
+   npm run dev
+   ```
