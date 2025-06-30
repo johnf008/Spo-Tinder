@@ -6,7 +6,7 @@ function Main_Card({token}) {
     {/*Used to get the artists top tracks*/}
     const [artists, updateArtists] = useState("")
     const [artistIDS, updateArtistsIDS] = useState([])
-    const [tracks, updateTracks] = useState({})
+    const [tracks, updateTracks] = useState({tracks: []})
 
     {/*Used to get the visuals*/}
     const [albumCover, updateCover] = useState("https://placehold.co/250")
