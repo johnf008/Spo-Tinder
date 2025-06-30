@@ -182,9 +182,11 @@ function App() {
       
       
       <div className="h-screen m-auto justify-center items-center">
-        
+        <h2>Token: {token}</h2>
         {token && token !== "undefined" ?
-        <Main_Card token={token}></Main_Card>
+        <Main_Card token={token}>
+
+        </Main_Card>
          : 
          <div className="block place-items-center mt-40 items-center m-auto">
           <button onClick={login} className="bg-green-600 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-700 font-bold text-white">Sign into Spotify!</button>
