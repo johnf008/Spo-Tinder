@@ -7,5 +7,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "/Spo-Tinder/",
+
+  server: {
+    allowedHosts: ["bwxiax-ip-173-173-201-74.tunnelmole.net"]
+  }
   
 })

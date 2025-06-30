@@ -21,13 +21,56 @@ function App() {
     "playlist-modify-private"
   ]
   const SCOPES_URL_PARM = SCOPES.join(SPACE_DELIMITER)
-  const REDIRECT_URL = "https://johnf008.github.io/Spo-Tinder"
+  const REDIRECT_URL = "https://bwxiax-ip-173-173-201-74.tunnelmole.net"
+
+  const randStringGenerator = (length) => {
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    const values = crypto.getRandomValues(new Uint8Array(length))
+    return values.reduce((acc,x) => acc + possible[x % possible.length], "")
+  }
+
+  const sha256 = async (plain) => {
+    const encoder = new TextEncoder()
+    const data = encoder.encode(plain)
+    return window.crypto.subtle.digest('SHA-256', data)
+  }
+
+  const base64encode = (input) => {
+  return btoa(String.fromCharCode(...new Uint8Array(input)))
+    .replace(/=/g, '')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_');
+}
+
+
 
   const login = () => {
     window.location = `${AUTH_END_POINT}?response_type=code&client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URL}&show_dialog=true`
   }
   const[token, setToken] = useState("")
   const[code, setCode] = useState("")
+  
+  /*
+  useEffect(() => {
+      const run = async () =>{
+      const CODE_VERIFIER = randStringGenerator(64)
+      const HASHED = await sha256(CODE_VERIFIER)
+      const CODE_CHALLENGE = base64encode(HASHED)
+
+      const params = {
+        response_type: 'code', 
+        client_id: CLIENT_ID, 
+        SCOPES,
+        code_challenge_method: 'S256',
+        code_challeng: CODE_CHALLENGE, 
+        redirect_uri: REDIRECT_URL
+      }
+
+      AUTH_END_POINT.search = new URLSearchParams(params).toString()
+      window.location.href = AUTH_END_POINT.toString()
+  }
+  run()
+  }, [])
   
   useEffect(() => {
     const PARAM = new URLSearchParams(window.location.search)
@@ -37,6 +80,7 @@ function App() {
       setCode(code_needed)
     }
   }, [])
+  
 
   useEffect(() => {
     if (!code) return; 
@@ -68,6 +112,7 @@ function App() {
     })
 
   }, [code])
+  */
 
 
   const data_hi = [
