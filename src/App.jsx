@@ -107,6 +107,7 @@ function App() {
       localStorage.setItem('access_token', response.access_token)
       //console.log("Access token: ", response.access_token)
 
+
       setToken(response.access_token)
     }
     
@@ -123,6 +124,12 @@ function App() {
     }
     //console.log(code_needed)
   }, [])
+
+  useEffect(() => {
+    if (token) {
+      spotify.setAccessToken(token)
+    }
+  }, [token])
   
 /*
   useEffect(() => {
