@@ -10,6 +10,9 @@ import SpotifyWebApi from 'spotify-web-api-js'
 function App() {
   const spotify = new SpotifyWebApi()
 
+  const[token, setToken] = useState("")
+  const[code, setCode] = useState("")
+
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
   const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
   const SPACE_DELIMITER = "%20"
@@ -45,14 +48,8 @@ function App() {
 
 
   const login = () => {
-    window.location = `${AUTH_END_POINT}?response_type=code&client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URL}&show_dialog=true`
-  }
-  const[token, setToken] = useState("")
-  const[code, setCode] = useState("")
-  
-  /*
-  useEffect(() => {
-      const run = async () =>{
+    //window.location = `${AUTH_END_POINT}?response_type=code&client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URL}&show_dialog=true`
+    const run = async () =>{
       const CODE_VERIFIER = randStringGenerator(64)
       const HASHED = await sha256(CODE_VERIFIER)
       const CODE_CHALLENGE = base64encode(HASHED)
@@ -60,17 +57,59 @@ function App() {
       const params = {
         response_type: 'code', 
         client_id: CLIENT_ID, 
-        SCOPES,
+        scope: SCOPES,
         code_challenge_method: 'S256',
-        code_challeng: CODE_CHALLENGE, 
+        code_challenge: CODE_CHALLENGE, 
         redirect_uri: REDIRECT_URL
       }
 
-      AUTH_END_POINT.search = new URLSearchParams(params).toString()
-      window.location.href = AUTH_END_POINT.toString()
+      const AUTH_URL = new URL(AUTH_END_POINT)
+      AUTH_URL.search = new URLSearchParams(params).toString()
+
+      sessionStorage.setItem("code_verifier", CODE_VERIFIER)
+
+      window.location.href = AUTH_URL.toString()
+
+      const urlParams = new URLSearchParams(window.location.search)
+      let cool_code = urlParams.get('code')
+      setCode(cool_code)
+      console.log("Cool code: ", cool_code)
   }
   run()
-  }, [])
+  }
+  
+  
+  useEffect(() => {
+    if (!code) return
+
+    const CODE_VERIFIER = localStorage.getItem('code_verifier')
+
+    const url = "https://accounts.spotify.com/api/token"
+    const payload = {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        client_id: CLIENT_ID,
+        grant_type: 'authorization_code', 
+        code: code, 
+        redirect_uri: REDIRECT_URL, 
+        code_verifier: CODE_VERIFIER,
+      }),
+    }
+
+    const fetchToken = async () => {
+      const body = await fetch(url, payload)
+      const response = await body.json()
+
+      localStorage.setItem('access_token', response.access_token)
+      console.log("Access token: ", response.access_token)
+    }
+    
+    fetchToken()
+  }, [code])
+  
   
   useEffect(() => {
     const PARAM = new URLSearchParams(window.location.search)
@@ -81,7 +120,7 @@ function App() {
     }
   }, [])
   
-
+/*
   useEffect(() => {
     if (!code) return; 
     const body = new URLSearchParams({
