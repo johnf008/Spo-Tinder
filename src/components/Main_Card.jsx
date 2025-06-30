@@ -30,6 +30,11 @@ function Main_Card({token}) {
         fetch("https://api.spotify.com/v1/me/top/artists", parms)
         .then(result => result.json())
         .then(data => {
+            console.log("Top Artists: ", data)
+            if (!data.items || data.items.length === 0 ){
+                console.log("User has no top artists")
+                return
+            }
             updateArtists([...new Set(data.items.flatMap(artist => artist.name))])
 
             updateArtistsIDS([...new Set(data.items.map(artist => artist.id))])
@@ -64,7 +69,7 @@ function Main_Card({token}) {
             count += 1
     }   
         
-    }, [artistIDS])
+    }, [artistIDS, token])
 
     function createPlaylist() {
         if (!token) return
