@@ -4,11 +4,8 @@ import viteLogo from '/vite.svg'
 import Dropdown from './components/Dropdown.jsx'
 import NavBar from './components/NavBar.jsx'
 import Main_Card from './components/Main_Card.jsx'
-import SpotifyWebApi from 'spotify-web-api-js'
-
 
 function App() {
-  const spotify = new SpotifyWebApi()
 
   const[token, setToken] = useState("")
   const[code, setCode] = useState("")
@@ -127,7 +124,6 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      spotify.setAccessToken(token)
     }
   }, [token])
   
