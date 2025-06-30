@@ -24,7 +24,7 @@ function App() {
     "playlist-modify-private"
   ]
   const SCOPES_URL_PARM = SCOPES.join(SPACE_DELIMITER)
-  const REDIRECT_URL = "https://bwxiax-ip-173-173-201-74.tunnelmole.net"
+  const REDIRECT_URL = "https://johnf008.github.io/Spo-Tinder"
 
   const randStringGenerator = (length) => {
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -57,7 +57,7 @@ function App() {
       const params = {
         response_type: 'code', 
         client_id: CLIENT_ID, 
-        scope: SCOPES,
+        scope: SCOPES.join(" "),
         code_challenge_method: 'S256',
         code_challenge: CODE_CHALLENGE, 
         redirect_uri: REDIRECT_URL
@@ -66,14 +66,15 @@ function App() {
       const AUTH_URL = new URL(AUTH_END_POINT)
       AUTH_URL.search = new URLSearchParams(params).toString()
 
-      sessionStorage.setItem("code_verifier", CODE_VERIFIER)
+      localStorage.setItem("code_verifier", CODE_VERIFIER)
 
       window.location.href = AUTH_URL.toString()
-
+      /*
       const urlParams = new URLSearchParams(window.location.search)
       let cool_code = urlParams.get('code')
       setCode(cool_code)
       console.log("Cool code: ", cool_code)
+      */
   }
   run()
   }
@@ -104,7 +105,9 @@ function App() {
       const response = await body.json()
 
       localStorage.setItem('access_token', response.access_token)
-      console.log("Access token: ", response.access_token)
+      //console.log("Access token: ", response.access_token)
+
+      setToken(response.access_token)
     }
     
     fetchToken()
@@ -118,6 +121,7 @@ function App() {
     if (code_needed){
       setCode(code_needed)
     }
+    //console.log(code_needed)
   }, [])
   
 /*
@@ -172,7 +176,7 @@ function App() {
       
       <div className="h-screen m-auto justify-center items-center">
         
-        {token ? 
+        {token && token !== "undefined" ?
         <Main_Card token={token}></Main_Card>
          : 
          <div className="block place-items-center mt-40 items-center m-auto">
