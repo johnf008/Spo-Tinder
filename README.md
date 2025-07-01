@@ -15,7 +15,7 @@ https://github.com/user-attachments/assets/44e91924-1545-4790-be96-a3fb375bea66
 
 ## Where to Use
 
-You can use Spo-Tinder by clicking <a href="https://johnf008.github.io/Spo-Tinder/" target="_blank">HERE</a>
+You can use Spo-Tinder by clicking <a href="https://johnf008.github.io/Spo-Tinder/" target="_blank">HERE</a>. However, the Spotify Web API only allows me to add users manually. If you would like to try it out, dm me on Slack @John, or you will need to install it locally. 
 
 ## How to Use
 1. Press the "Login To Spotify Button" (The only data I'm collecting is your profile picture, artists, and getting access to make playlists"
@@ -28,22 +28,26 @@ You can use Spo-Tinder by clicking <a href="https://johnf008.github.io/Spo-Tinde
    ```sh
    git clone https://github.com/johnf008/Spo-Tinder.git
    ```
-2. Install Node JS to get access to "npm" if you don't have it already
-3. Open the repository, and install Tunnelmole by running this command (It allows you to run your website publically so you can input a redirect link into Spotify, and you can read the documentation <a href="https://tunnelmole.com/docs/" target="_blank">HERE</a>)
+2. Install Node.js to get access to "npm" if you don't have it already
+3. Open the repository and install Tunnelmole by running this command (It allows you to run your website publicly so you can input a redirect link into Spotify, and you can read the documentation <a href="https://tunnelmole.com/docs/" target="_blank">HERE</a>)
    ```sh
    npm install -g tunnelmole
    ```
 4. Make a Spotify Developer account and create an app with the Spotify Web API from the Developer Dashboard
-5. Copy & Paste the client id into the CLIENT_ID variable at the top of the App.jsx file (root -> src -> components -> App.jsx)
-6. Run this command in your terminal, and don't close it!
+![image](https://github.com/user-attachments/assets/61b58fcc-de1e-4d25-8623-a4c309ab406f)
+
+6. Copy & Paste the client id into the CLIENT_ID variable at the top of the App.jsx file (root -> src -> components -> App.jsx)
+![image](https://github.com/user-attachments/assets/fc77c2d1-0cf6-49e4-89e4-23797e19bfc8)
+
+8. Run this command in your terminal, and don't close it!
    ```sh
    npm run dev
    ```
-7. Open a new terminal and run
-8. ```sh
+9. Open a new terminal and run
+ ```sh
    tmole 5173
    ```
-9. Copy and paste the first link tunnelmole provides into the REDIRECT_URI variable at the top of the App.jsx file (root -> src -> components -> App.jsx)
-10. Copy and paste the tunnelmole link into the "Redirect URI'S" bar in the spotify dashboard
-11. Go to the vite.config.js file and paste the tmole link into the allowedHosts (root -> vite.config.js)
-12. Open the tmole link in your browser to access the website!
+11. Copy and paste the first link tunnelmole provides into the REDIRECT_URI variable at the top of the App.jsx file (root -> src -> components -> App.jsx)
+12. Copy and paste the tunnelmole link into the "Redirect URI" bar in the Spotify dashboard
+13. Go to the vite.config.js file and paste the tmole link into the allowedHosts (root -> vite.config.js) (You will also need to input it like this: bwxiax-ip-173-173-201-74.tunnelmole.net)
+14. Open the tmole link in your browser to access the website!
