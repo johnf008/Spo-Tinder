@@ -8,8 +8,9 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "/Spo-Tinder/",
 
+  // *-*- PLEASE INPUT THE TUNNELMOLE LINK WITHOUT THE "HTTPS"  -*-*
   server: {
-    allowedHosts: ["bwxiax-ip-173-173-201-74.tunnelmole.net"]
+    allowedHosts: [""]
   }
   
 })

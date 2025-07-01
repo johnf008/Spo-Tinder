@@ -7,10 +7,14 @@ import Main_Card from './components/Main_Card.jsx'
 
 function App() {
 
+  //*-*- PLEASE REPLACE THE "import.meta.env.VITE_CLIENT_ID" WITH THE CLIENT ID THAT THE SPOTIFY DASHBOARD PROVIDES YOU -*-*
+  const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
+
+  //*-*- PLEASE REPLACE THE STRING WITH THE FIRST LINK TUNNELMOLE PROVIDES YOU -*-*
+  const REDIRECT_URL = "https://johnf008.github.io/Spo-Tinder"
+
   const[token, setToken] = useState("")
   const[code, setCode] = useState("")
-
-  const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
 
 
   //const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
@@ -23,7 +27,7 @@ function App() {
     "playlist-modify-private"
   ]
   const SCOPES_URL_PARM = SCOPES.join(SPACE_DELIMITER)
-  const REDIRECT_URL = "https://johnf008.github.io/Spo-Tinder"
+  
 
   const randStringGenerator = (length) => {
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'

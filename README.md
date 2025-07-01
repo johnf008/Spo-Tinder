@@ -28,7 +28,22 @@ You can use Spo-Tinder by clicking <a href="https://johnf008.github.io/Spo-Tinde
    ```sh
    git clone https://github.com/johnf008/Spo-Tinder.git
    ```
-2. Run this command in your terminal
+2. Install Node JS to get access to "npm" if you don't have it already
+3. Open the repository, and install Tunnelmole by running this command (It allows you to run your website publically so you can input a redirect link into Spotify, and you can read the documentation <a href="https://tunnelmole.com/docs/" target="_blank">HERE</a>)
+   ```sh
+   npm install -g tunnelmole
+   ```
+4. Make a Spotify Developer account and create an app with the Spotify Web API from the Developer Dashboard
+5. Copy & Paste the client id into the CLIENT_ID variable at the top of the App.jsx file (root -> src -> components -> App.jsx)
+6. Run this command in your terminal, and don't close it!
    ```sh
    npm run dev
    ```
+7. Open a new terminal and run
+8. ```sh
+   tmole 5173
+   ```
+9. Copy and paste the first link tunnelmole provides into the REDIRECT_URI variable at the top of the App.jsx file (root -> src -> components -> App.jsx)
+10. Copy and paste the tunnelmole link into the "Redirect URI'S" bar in the spotify dashboard
+11. Go to the vite.config.js file and paste the tmole link into the allowedHosts (root -> vite.config.js)
+12. Open the tmole link in your browser to access the website!
