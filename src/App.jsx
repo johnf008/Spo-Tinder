@@ -11,7 +11,9 @@ function App() {
   const[code, setCode] = useState("")
 
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
-  const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
+
+
+  //const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
   const SPACE_DELIMITER = "%20"
   const AUTH_END_POINT = "https://accounts.spotify.com/authorize"
   const SCOPES = [
@@ -178,7 +180,6 @@ function App() {
       
       
       <div className="h-screen m-auto justify-center items-center">
-        <h2>Token: {token}</h2>
         {token && token !== "undefined" ?
         <Main_Card token={token}>
 
