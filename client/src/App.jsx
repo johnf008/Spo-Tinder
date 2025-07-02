@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import Dropdown from './components/Dropdown.jsx'
 import NavBar from './components/NavBar.jsx'
 import Main_Card from './components/Main_Card.jsx'
+import axios from "axios"
 
 function App() {
 
@@ -12,6 +13,18 @@ function App() {
 
   //*-*- PLEASE REPLACE THE STRING WITH THE FIRST LINK TUNNELMOLE PROVIDES YOU -*-*
   const REDIRECT_URL = "https://johnf008.github.io/Spo-Tinder"
+
+  const [array, setArray] = useState([])
+
+  const fetchAPI = async () => {
+    const response = await axios.get("http://localhost:8080/api/users")
+    console.log(response.data.users)
+    setArray(response.data.users)
+  }
+
+  useEffect(() => {
+    fetchAPI()
+  },[])
 
   const[token, setToken] = useState("")
   const[code, setCode] = useState("")
@@ -194,12 +207,19 @@ function App() {
         </div>
         }
         
+      
+          {array.map((user, index) => (
+              <div key={index}>
+                <span>{user}</span>
+                <br></br>
+              </div>
+            ))
+          }
+    
 
         </div>
         
         
-      
-      
       </div>
     </div>
       
