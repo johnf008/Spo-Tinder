@@ -9,7 +9,9 @@ function EmailBox() {
         event.preventDefault()
         if (!name || !email){
             alert("You haven't typed your email or name yet")
-        }
+        }else if (!email.includes("@")){
+            alert("Your email needs an @")
+        } 
         else{
             sendToFlask()
         }
