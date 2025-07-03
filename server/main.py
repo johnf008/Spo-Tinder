@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 cors = CORS(app, origins='*')
 #commenting this function bc im gonna get lost if i don't look at it in after a few days
+'''
 def selenium_task():
 
     path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
@@ -68,12 +69,15 @@ def selenium_task():
     #verify & end
     time.sleep(10)
     driver.quit()
-
+'''
 @app.route("/api/data", methods=['POST'])
 def data():
     data = request.get_json()
     if data:
         print(f"We got the data: {data}")
+        
+        print(data['name'])
+        
         return jsonify(
             {
                 "Message" : "Data Recieved",
