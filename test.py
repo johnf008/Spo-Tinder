@@ -39,7 +39,10 @@ driver.get("https://developer.spotify.com/dashboard/664b034e2d7048968f214e27966b
 
 full_name_box = driver.find_element(By.ID, "name")
 full_name_box.send_keys("Jessie Cantu")
+driver.implicitly_wait(4)
 
-time.sleep(6)
+full_email_box = driver.find_element(By.ID, "email")
+full_email_box.send_keys("john.flores.h987@gmail.com" + Keys.ENTER)
 
+time.sleep(10)
 driver.quit()
