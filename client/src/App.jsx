@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import Dropdown from './components/Dropdown.jsx'
 import NavBar from './components/NavBar.jsx'
 import Main_Card from './components/Main_Card.jsx'
+import EmailBox from './components/EmailBox.jsx'
 import axios from "axios"
 
 function App() {
@@ -207,6 +208,7 @@ function App() {
         </div>
         }
         
+        <EmailBox></EmailBox>
       
           {array.map((user, index) => (
               <div key={index}>
@@ -215,8 +217,8 @@ function App() {
               </div>
             ))
           }
-    
 
+          
         </div>
         
         
