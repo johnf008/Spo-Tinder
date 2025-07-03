@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios"
 
 function EmailBox() {
     const [name, setName] = useState("")
@@ -10,10 +11,22 @@ function EmailBox() {
             alert("You haven't typed your email or name yet")
         }
         else{
-            alert(`Your name is: ${name} and the email is ${email}`)
+            sendToFlask()
         }
         
     }
+
+    const sendToFlask = async () => {
+                try {
+                    const response = await axios.post('http://localhost:8080/api/data', {
+                        name : name,
+                        email : email
+                    })
+                    console.log(response.data)
+                } catch (error){
+                    console.log("We (yes WE) have an error: ", error)
+                }
+            }
 
     return (
         <>

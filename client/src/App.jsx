@@ -17,16 +17,18 @@ function App() {
 
   const [array, setArray] = useState([])
 
+  /*
   const fetchAPI = async () => {
     const response = await axios.get("http://localhost:8080/api/users")
     console.log(response.data.users)
     setArray(response.data.users)
   }
+  
 
   useEffect(() => {
     fetchAPI()
   },[])
-
+  */
   const[token, setToken] = useState("")
   const[code, setCode] = useState("")
 
@@ -210,13 +212,7 @@ function App() {
         
         <EmailBox></EmailBox>
       
-          {array.map((user, index) => (
-              <div key={index}>
-                <span>{user}</span>
-                <br></br>
-              </div>
-            ))
-          }
+         
 
           
         </div>
