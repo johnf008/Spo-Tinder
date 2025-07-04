@@ -15,7 +15,6 @@ function App() {
   //*-*- PLEASE REPLACE THE STRING WITH THE FIRST LINK TUNNELMOLE PROVIDES YOU -*-*
   const REDIRECT_URL = "https://johnf008.github.io/Spo-Tinder"
 
-  const [array, setArray] = useState([])
 
   /*
   const fetchAPI = async () => {
@@ -31,7 +30,11 @@ function App() {
   */
   const[token, setToken] = useState("")
   const[code, setCode] = useState("")
+  const[statusEmail, setStatusEmail] = useState("")
 
+  const handleEmailStatus = (data) => {
+    setStatusEmail(data)
+  }
 
   //const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
   const SPACE_DELIMITER = "%20"
@@ -210,7 +213,8 @@ function App() {
         </div>
         }
         
-        <EmailBox></EmailBox>
+        <EmailBox sendThis={handleEmailStatus}></EmailBox>
+        <p>Status of email: {statusEmail}</p>
       
          
 

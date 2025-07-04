@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios"
 
-function EmailBox() {
+function EmailBox({ sendThis }) {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [status, setStatus] = useState("")
 
     const handleSubmit= (event) => {
         event.preventDefault()
@@ -25,8 +26,11 @@ function EmailBox() {
                         email : email
                     })
                     console.log(response.data)
+                    setStatus(response.data.Status)
+                    sendThis(response.data.Status)
                 } catch (error){
                     console.log("We (yes WE) have an error: ", error)
+                    sendThis("Error")
                 }
             }
 

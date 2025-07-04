@@ -72,9 +72,9 @@ def selenium_task(user_name, user_email):
         time.sleep(10)
         driver.quit()
 
-        return "You've been added!"
+        return "good"
     except:
-        return "Something went wrong when adding your data"
+        return "error"
 
 @app.route("/api/data", methods=['POST'])
 def data():
@@ -86,14 +86,26 @@ def data():
         email = data['email']
 
         message = selenium_task(name, email)
-        
-        return jsonify(
-            {
-                "Message" : message,
-                "Data" : data
-            }
+
+        if(message == "good"):
+            return jsonify(
+                {
+                    "Message" : message,
+                    "Data" : data,
+                    "Status": "good"
+                }
         )
-    return jsonify({"Message" : "No data"}), 400
+        else:
+            return jsonify({
+                "Message": message,
+                "Data" : data,
+                "Status" : "bad"
+            })
+    return jsonify(
+        {
+            "Message" : "No data",
+            "Status" : "bad"
+            }), 400
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
