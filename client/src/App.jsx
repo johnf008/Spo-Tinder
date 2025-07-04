@@ -207,14 +207,18 @@ function App() {
         <Main_Card token={token}>
 
         </Main_Card>
-         : 
+         : statusEmail == "good" ? 
          <div className="block place-items-center mt-40 items-center m-auto">
           <button onClick={login} className="bg-green-600 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-700 font-bold text-white">Sign into Spotify!</button>
         </div>
-        }
-        
-        <EmailBox sendThis={handleEmailStatus}></EmailBox>
+
+        :
+        <>
+        <EmailBox sendThis={handleEmailStatus}> </EmailBox>
         <p>Status of email: {statusEmail}</p>
+        </>
+        }
+
       
          
 
