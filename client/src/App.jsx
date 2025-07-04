@@ -215,7 +215,7 @@ function App() {
         :
         <>
         <EmailBox sendThis={handleEmailStatus}> </EmailBox>
-        <p>Status of email: {statusEmail}</p>
+        <p className='font-bold text-white flex items-center justify-center'>Status of email: {statusEmail}</p>
         </>
         }
 

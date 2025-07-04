@@ -41,35 +41,35 @@ function EmailBox({ sendThis }) {
         <div className="flex items-center justify-center">
             <form onSubmit={handleSubmit}>
 
-            <div className="mb-4 mt-4">
-            <label>Enter your name: </label>
+            <div className="mb-4 mt-4 h-10 rounded-xl font-bold text-white flex items-center justify-center bg-green-800">
+            <label className="mr-5">Enter your name:</label>
             <input
             type="text"
             id="name"
             autoComplete="given-name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="bg-amber-700" />
+            className="bg-lime-300" />
             </div>
 
-            <div className="">
-            <label>Enter your email: </label>
+            <div className="mb-4 mt-4 h-10 rounded-xl font-bold text-white flex items-center justify-center bg-green-800">
+            <label className="mr-5">Enter your email: </label>
             <input
             type="text"
             id="email"
             autoComplete="given-email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-amber-700" />
+            className="bg-lime-300" />
             </div>
 
-            <div className="flex justify-center mt-4">
+            <div className="justify-center mt-4 font-bold text-white flex items-center">
                 <input
                 type="submit"
                 className="bg-green-600 w-25 h-10 m-auto rounded-xl cursor-pointer hover:bg-green-700 font-bold text-white" />
             </div>
 
-            <h3 className="mt-4">{register}</h3>
+            <h3 className="mb-4 mt-4 h-10 rounded-xl font-bold text-white flex items-center justify-center bg-green-800">{register}</h3>
             
             </form>
 
