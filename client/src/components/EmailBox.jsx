@@ -5,6 +5,7 @@ function EmailBox({ sendThis }) {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [status, setStatus] = useState("")
+    const [register, setRegisterStatus] = useState("This will only be used to add you to the allowed users :)")
 
     const handleSubmit= (event) => {
         event.preventDefault()
@@ -14,6 +15,7 @@ function EmailBox({ sendThis }) {
             alert("Your email needs an @")
         } 
         else{
+            setRegisterStatus("The script to add you to the allowed users is now running! Please be patient! (It should take 30-45 seconds)")
             sendToFlask()
         }
         
@@ -67,8 +69,8 @@ function EmailBox({ sendThis }) {
                 className="bg-green-600 w-25 h-10 m-auto rounded-xl cursor-pointer hover:bg-green-700 font-bold text-white" />
             </div>
 
-            <h3 className="mt-4">This will only be used to add you to the allowed users :)</h3>
-
+            <h3 className="mt-4">{register}</h3>
+            
             </form>
 
             
