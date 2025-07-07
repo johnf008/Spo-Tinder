@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
 from selenium import webdriver
@@ -9,7 +9,7 @@ import time
 import os
 from dotenv import load_dotenv
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../client/dist", static_url_path="/")
 cors = CORS(app, origins='*')
 #commenting this function bc im gonna get lost if i don't look at it in after a few days
 
@@ -101,11 +101,6 @@ def data():
                 "Data" : data,
                 "Status" : "bad"
             })
-    return jsonify(
-        {
-            "Message" : "No data",
-            "Status" : "bad"
-            }), 400
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
