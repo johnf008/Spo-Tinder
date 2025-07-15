@@ -4,7 +4,6 @@ import viteLogo from '/vite.svg'
 import Dropdown from './components/Dropdown.jsx'
 import NavBar from './components/NavBar.jsx'
 import Main_Card from './components/Main_Card.jsx'
-import EmailBox from './components/EmailBox.jsx'
 import axios from "axios"
 
 function App() {
@@ -32,9 +31,11 @@ function App() {
   const[code, setCode] = useState("")
   const[statusEmail, setStatusEmail] = useState("")
 
+  {/*
   const handleEmailStatus = (data) => {
     setStatusEmail(data)
   }
+    */}
 
   //const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
   const SPACE_DELIMITER = "%20"
@@ -186,14 +187,6 @@ function App() {
   */
 
 
-  const data_hi = [
-    {value: "0", name: "Select"},
-    {value: "1", name: "Song 1"},
-    {value: "2", name: "Song 2"},
-    {value: "3", name: "Song 3"}
-
-  ];
-
 
   return (
     <>
@@ -207,16 +200,12 @@ function App() {
         <Main_Card token={token}>
 
         </Main_Card>
-         : statusEmail == "good" ? 
+         :
          <div className="block place-items-center mt-40 items-center m-auto">
           <button onClick={login} className="bg-green-600 w-50 h-20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-green-700 font-bold text-white">Sign into Spotify!</button>
         </div>
 
-        :
-        <>
-        <EmailBox sendThis={handleEmailStatus}> </EmailBox>
-        <p className='font-bold text-white flex items-center justify-center'>Status of email: {statusEmail}</p>
-        </>
+        
         }
 
       
